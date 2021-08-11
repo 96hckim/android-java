@@ -3,6 +3,7 @@ package com.hocheol.mvvmretrofitjava;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -17,7 +18,7 @@ import com.hocheol.mvvmretrofitjava.viewmodel.MovieListViewModel;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MovieListAdapter.ItemClickListener {
 
     private List<MovieModel> movieModelList;
     private MovieListAdapter adapter;
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         LinearLayoutManager layoutManager = new GridLayoutManager(this, 1);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new MovieListAdapter(this, movieModelList);
+        adapter = new MovieListAdapter(this, movieModelList, this);
         recyclerView.setAdapter(adapter);
 
         viewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
@@ -52,5 +53,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onMovieClick(MovieModel movie) {
+        Toast.makeText(this, "Clicked Movie Name is : " + movie.getTitle(), Toast.LENGTH_SHORT).show();
     }
 }

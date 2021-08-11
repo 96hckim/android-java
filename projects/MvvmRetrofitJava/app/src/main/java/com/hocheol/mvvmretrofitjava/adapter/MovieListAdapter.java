@@ -21,10 +21,12 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MyVi
 
     private Context context;
     private List<MovieModel> movieList;
+    private ItemClickListener clickListener;
 
-    public MovieListAdapter(Context context, List<MovieModel> movieList) {
+    public MovieListAdapter(Context context, List<MovieModel> movieList, ItemClickListener clickListener) {
         this.context = context;
         this.movieList = movieList;
+        this.clickListener = clickListener;
     }
 
     public void setMovieList(List<MovieModel> movieList) {
@@ -41,13 +43,20 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull MovieListAdapter.MyViewHolder holder, int position) {
-        MovieModel movieModel = movieList.get(position);
+        MovieModel movie = movieList.get(position);
 
-        holder.title.setText(movieModel.getTitle());
+        holder.title.setText(movie.getTitle());
         Glide.with(context)
-                .load(movieModel.getImage())
+                .load(movie.getImage())
                 .apply(RequestOptions.centerCropTransform())
                 .into(holder.imageView);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickListener.onMovieClick(movie);
+            }
+        });
     }
 
     @Override
@@ -69,5 +78,9 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MyVi
             imageView = itemView.findViewById(R.id.imageView);
         }
 
+    }
+
+    public interface ItemClickListener {
+        public void onMovieClick(MovieModel movie);
     }
 }
