@@ -6,6 +6,6 @@ MovieList
 
 * MVVM
 * Retrofit2
-* Live Data
-* Recyclerview
+* LiveData
+* RecyclerView
 * Glide
