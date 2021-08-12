@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements CategoryListAdapt
         TextView createButton = dialogView.findViewById(R.id.createButton);
         TextView cancelButton = dialogView.findViewById(R.id.cancelButton);
 
-        if(isForEdit) {
+        if (isForEdit) {
             createButton.setText("Update");
             enterCategoryInput.setText(categoryForEdit.categoryName);
         }
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements CategoryListAdapt
                     return;
                 }
 
-                if(isForEdit) {
+                if (isForEdit) {
                     categoryForEdit.categoryName = name;
                     viewModel.updateCategory(categoryForEdit);
                 } else {

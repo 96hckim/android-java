@@ -10,6 +10,7 @@ import androidx.room.RoomDatabase;
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract ShoppingListDao shoppingListDao();
+
     public static AppDatabase INSTANCE;
 
     public static AppDatabase getDBInstance(Context context) {
