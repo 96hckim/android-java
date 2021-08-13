@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements CategoryListAdapt
                     noResultTextView.setVisibility(View.VISIBLE);
                     recyclerView.setVisibility(View.GONE);
                 } else {
-                    // show recyclerview
                     categoryListAdapter.setCategoryList(categories);
                     recyclerView.setVisibility(View.VISIBLE);
                     noResultTextView.setVisibility(View.GONE);
@@ -109,7 +108,6 @@ public class MainActivity extends AppCompatActivity implements CategoryListAdapt
                     categoryForEdit.categoryName = name;
                     viewModel.updateCategory(categoryForEdit);
                 } else {
-                    // call view model
                     viewModel.insertCategory(name);
                 }
 
